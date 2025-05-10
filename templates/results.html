@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<h2>Results: {{ poll.question }}</h2>
+
+<ul id="results">
+  {% for option, percent in percentages.items() %}
+    {% if option %}
+      <li><strong>{{ option }}</strong> — <span class="percent">{{ percent }}%</span></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<p>Total votes: <span id="total">{{ total_votes }}</span></p>
+
+<p><a href="{{ url_for('polls') }}">← Back to Polls</a></p>
+
+<script>
+  const pollId = {{ poll.id | tojson }};
+  const resultsEl = document.getElementById('results');
+  const totalEl = document.getElementById('total');
+
+  async function fetchResults() {
+    try {
+      const res = await fetch(`/api/results/${pollId}`);
+      const data = await res.json();
+      const counts = data.counts;
+      const totalVotes = data.total_votes;
+
+      let html = '';
+      for (let option in counts) {
+        if (option) {
+          const percent = totalVotes ? Math.round((counts[option] / totalVotes) * 100) : 0;
+          html += `<li><strong>${option}</strong> — <span class="percent">${percent}%</span></li>`;
+        }
+      }
+
+      resultsEl.innerHTML = html || '<li>No votes yet.</li>';
+      totalEl.textContent = totalVotes;
+    } catch (err) {
+      console.error("Failed to fetch updated results", err);
+    }
+  }
+
+  setInterval(fetchResults, 5000);
+</script>
+{% endblock %}

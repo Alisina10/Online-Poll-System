@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block title %}All Polls{% endblock %}
+
+{% block content %}
+<h2>All Polls</h2>
+<ul>
+{% for poll in polls %}
+  <li>
+    {{ poll.question }} —
+    <a href="{{ url_for('vote', poll_id=poll.id) }}">Vote</a> |
+    <a href="{{ url_for('results', poll_id=poll.id) }}">Results</a>
+  </li>
+{% endfor %}
+</ul>
+
+<a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+{% endblock %}

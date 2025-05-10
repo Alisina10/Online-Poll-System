@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}All Polls{% endblock %}
+
+{% block content %}
+<h2>All Polls</h2>
+<ul>
+  {% for poll in polls %}
+    <li>
+      {{ poll.question }} —
+      <a href="{{ url_for('vote', poll_id=poll.id) }}">Vote</a> |
+      <a href="{{ url_for('results', poll_id=poll.id) }}">Results</a> |
+      <a href="{{ url_for('edit_poll', poll_id=poll.id) }}">Edit</a> |
+      <a href="{{ url_for('delete_poll', poll_id=poll.id) }}" onclick="return confirm('Are you sure?');">Delete</a>
+    </li>
+  {% endfor %}
+</ul>
+
+<p><a href="{{ url_for('dashboard') }}">← Back to Dashboard</a></p>
+{% endblock %}

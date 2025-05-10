@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}Create Poll{% endblock %}
+
+{% block content %}
+<h2>Create a New Poll</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.question.label }}<br>{{ form.question(size=50) }}<br><br>
+    {{ form.option1.label }}<br>{{ form.option1(size=50) }}<br>
+    {{ form.option2.label }}<br>{{ form.option2(size=50) }}<br>
+    {{ form.option3.label }}<br>{{ form.option3(size=50) }}<br>
+    {{ form.option4.label }}<br>{{ form.option4(size=50) }}<br><br>
+    {{ form.submit() }}
+</form>
+<a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+{% endblock %}

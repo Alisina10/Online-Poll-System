@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}Online Poll System{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<button id="theme-toggle">🌓 Dark Mode</button>
+<div class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flashes">
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+</div>
+</body>
+<script>
+  const body = document.body;
+  const toggle = document.getElementById("theme-toggle");
+
+  // Set theme on page load from localStorage
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark");
+  }
+
+  toggle?.addEventListener("click", () => {
+    body.classList.toggle("dark");
+    // Save theme preference
+    localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "light");
+  });
+</script>
+
+
+</html>

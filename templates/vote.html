@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}Vote{% endblock %}
+
+{% block content %}
+<h2>{{ poll.question }}</h2>
+<form method="POST">
+    <input type="radio" name="option" value="{{ poll.option1 }}"> {{ poll.option1 }}<br>
+    <input type="radio" name="option" value="{{ poll.option2 }}"> {{ poll.option2 }}<br>
+    {% if poll.option3 %}
+        <input type="radio" name="option" value="{{ poll.option3 }}"> {{ poll.option3 }}<br>
+    {% endif %}
+    {% if poll.option4 %}
+        <input type="radio" name="option" value="{{ poll.option4 }}"> {{ poll.option4 }}<br>
+    {% endif %}
+    <br>
+    <button type="submit">Submit Vote</button>
+</form>
+<a href="{{ url_for('polls') }}">← Back to Poll List</a>
+{% endblock %}
