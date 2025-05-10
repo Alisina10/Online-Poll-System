@@ -1,37 +1,66 @@
-# Online-Poll-System
+# 🗳️ Online Poll System
 
-1. Clone the Repository
-git clone https://github.com/your-username/online-poll-system.git
-cd online-poll-system
-2. Create and Activate a Virtual Environment 
-python3 -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
-3.Install Dependencies
-pip install -r requirements.txt
-4. Run the Application
-python app.py
+A web-based polling app built with Flask that allows registered users to create polls, vote, and view results in real time.
+
+---
+
+## 🚀 Features
+
+- User registration & login (Flask-Login)
+- Create, edit, and delete polls (CRUD)
+- Vote with protection from multiple voting
+- Live vote result updates with JavaScript fetch API
+- Light/Dark mode toggle
+- Random number trivia using Numbers API
+
+---
+
+## 📦 Tech Stack
+
+- Python (Flask, Flask-Login, Flask-WTF, Flask-SQLAlchemy)
+- HTML + Jinja2
+- CSS
+- JavaScript (fetch for live updates)
+- SQLite
+- NumbersAPI (external integration)
 
 
-📦 Dependencies
-Flask
-Flask-Login
-Flask-WTF
-Flask-SQLAlchemy
-requests
-WTForms
-Werkzeug
 
+---
 
-📚 Folder Structure
-/templates          → HTML templates
-/static/style.css   → Custom styles (supports dark mode)
-app.py              → Main Flask app
-requirements.txt    → Python dependencies
-README.md           → Project documentation
+## 🛠️ Setup Instructions
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/online-poll-system.git
+   cd online-poll-system
+   
+2- Create a Virtual Environment
+-
+- python3 -m venv venv
+- source venv/bin/activate    # On Windows: venv\Scripts\activate
+
+2- Install Dependencies
+-
+- pip install -r requirements.txt
+
+3- Run the Application
+- python app.py
+
+🔌 Dependencies
+-
+- Flask
+- Flask-Login
+- Flask-WTF
+- Flask-SQLAlchemy
+- requests
+- WTForms
+- Werkzeug
 
 ✨ Future Improvements
-WebSockets for real-time voting (Flask-SocketIO)
-Admin panel for poll moderation
-Result charts with Chart.js
+- 
+- Real-time voting updates via WebSockets (Flask-SocketIO)
+- Admin dashboard for managing users and polls
+- Poll result charts with Chart.js
 
 
