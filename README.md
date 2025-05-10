@@ -45,6 +45,7 @@ A web-based polling app built with Flask that allows registered users to create 
 - pip install -r requirements.txt
 
 3- Run the Application
+-
 - python app.py
 
 🔌 Dependencies
