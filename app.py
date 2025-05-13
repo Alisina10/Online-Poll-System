@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, jsonify
 import requests  # Keep this at the top with other imports
+import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from flask_wtf import FlaskForm
@@ -10,8 +11,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 # Initialize app and extensions
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'this-should-be-secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///polls.db'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///polls.db')
+
 
 db = SQLAlchemy(app)
 login_manager = LoginManager()
